@@ -1,0 +1,86 @@
+body {
+    font-family: Courier New, monospace;
+    background-color: black;
+    color: white;
+    margin: 10px;
+    position: relative;
+}
+header {
+    padding: 0px;
+    margin: auto;
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+header div {
+    display: inline-block;
+    margin: auto;
+    padding: 0;
+    justify-content: space-between;
+    width: 33%;
+}
+.filter {
+    float: right;
+}
+.home {
+    float: left;
+}
+a {
+    color: white;
+}
+article {
+    position: relative;
+}
+.gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+select {
+    background-color: black;
+    color: white;
+}
+.sizer1 {
+    width: 100%;
+}
+.sizer2 {
+    width: 50%;
+}
+.sizer4 {
+    width: 25%;
+}
+.sizer5 {
+    width: 20%;
+}
+.item-masonry {
+    position: relative;
+    margin-bottom: 10px;
+}
+.item-masonry img {
+    width: 100%;
+    height: auto;
+}
+.cover_name {
+    background-color: #404040;
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+/* --- HIDE FILTERED ITEMS BUT KEEP SPACE --- */
+.item-masonry.filtered-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}

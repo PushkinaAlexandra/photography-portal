@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres of Photography</title>
+    <link href="Genre.css" type="text/css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Parisienne&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="Genre.js"></script>
+</head>
+<body>
+<header>
+    <div class="home"><a href="index.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></div>
+    <div class="h1"><h1>Genres of Photography</h1></div>
+</header>
+<article>
+    <!-- Боковое меню (как в Technique) -->
+    <div class="side_nav">
+        <a class="side_nav_a" data-target="Portrait">Portrait</a>
+        <a class="side_nav_a" data-target="Landscape">Landscape</a>
+        <a class="side_nav_a" data-target="Street">Street</a>
+        <a class="side_nav_a" data-target="Documentary">Documentary</a>
+    </div>
+
+    <div class="content">
+        <!-- ЖАНР 1: ПОРТРЕТ -->
+        <div class="part" id="Portrait">
+            <h2>📸 Portrait Photography</h2>
+            <div class="text">
+                <p><img src="Images/Persons/Julia_Margaret_Cameron_Photo (1).jpg" align="left" width="25%" style="border-right: 8px solid black; max-width:250px">
+                    <strong>Capturing the soul behind the face.</strong> Portrait photography is one of the oldest and most profound genres. It seeks to reveal the character, mood, and inner life of a person. In our gallery, you can see the work of <strong>Julia Margaret Cameron</strong>, whose soft-focus, intimate portraits of Victorian intellectuals redefined the genre, and <strong>Nadar</strong>, who captured the bohemian elite of 19th-century Paris.</p>
+                <p>Modern portraitists like <strong>Richard Avedon</strong> and <strong>Irving Penn</strong> stripped away distractions, using stark white backgrounds to focus entirely on the human face. In our <a href="Gallery.html">Gallery</a>, you can see how each photographer brings their own vision to the human form.</p>
+                <p><strong>Key techniques:</strong> Lighting (Rembrandt, butterfly, split), lens choice (85mm is classic for portraits), and the all-important connection between photographer and subject.</p>
+            </div>
+        </div>
+
+        <!-- ЖАНР 2: ПЕЙЗАЖ -->
+        <div class="part" id="Landscape">
+            <h2>🌄 Landscape Photography</h2>
+            <div class="text">
+                <p><img src="Images/Persons/Andreas_Gurski_Photo (1).jpg" align="right" width="25%" style="border-left: 8px solid black; max-width:250px">
+                    <strong>Where nature meets the sublime.</strong> Landscape photography captures the grandeur of the natural world — from majestic mountains to industrial ruins. Our collection features <strong>Andreas Gursky</strong>, who uses high vantage points to create epic, almost abstract views of modern landscapes, and <strong>Edward Burtynsky</strong>, who documents the scars of industrialization on the earth.</p>
+                <p>This genre challenges photographers to find order in chaos, beauty in decay, and to convey the scale of nature. Techniques like <strong>long exposure</strong> (for silky water) and <strong>depth of field</strong> (keeping foreground to horizon sharp) are essential tools.</p>
+            </div>
+        </div>
+
+        <!-- ЖАНР 3: СТРИТ-ФОТО -->
+        <div class="part" id="Street">
+            <h2>🚶 Street Photography</h2>
+            <div class="text">
+                <p><img src="Images/Persons/Henri_Cartier_Bresson_Photo (1).jpg" align="left" width="25%" style="border-right: 8px solid black; max-width:250px">
+                    <strong>The poetry of everyday life.</strong> Street photography is the art of the unplanned moment. It captures the humor, irony, and humanity of public spaces. <strong>Henri Cartier-Bresson</strong>, the father of street photography, called it "the decisive moment" — capturing a split second where form, light, and meaning converge. </p>
+                <p>In our gallery, you'll also find <strong>Robert Doisneau</strong> (the master of Parisian romance) and <strong>Elliott Erwitt</strong> (who finds absurdity in the mundane). Street photography relies on <strong>speed, intuition, and an intimate knowledge of the 35mm format</strong> (as seen in the <a href="Technique.html">Technique</a> section).</p>
+            </div>
+        </div>
+
+        <!-- ЖАНР 4: ДОКУМЕНТАЛИСТИКА -->
+        <div class="part" id="Documentary">
+            <h2>🌍 Documentary & Photojournalism</h2>
+            <div class="text">
+                <p><img src="Images/Persons/Dorotea_Lange_Photo (1).jpg" align="right" width="25%" style="border-left: 8px solid black; max-width:250px">
+                    <strong>Photography as witness.</strong> Documentary photography tells stories about real people and social issues. It has the power to change the world. <strong>Dorothea Lange</strong>'s "Migrant Mother" became the face of the Great Depression. <strong>Richard Drew</strong>'s "The Falling Man" is a haunting reminder of 9/11.</p>
+                <p>Magnum Photos, co-founded by <strong>Robert Capa</strong> and <strong>Henri Cartier-Bresson</strong>, became the gold standard for photojournalism. Our <a href="Persons.html">Persons</a> page features many Magnum legends: <strong>Eve Arnold</strong> (the first female member), <strong>Ian Berry</strong> (who documented Sharpeville), and <strong>Steve McCurry</strong> (of "Afghan Girl" fame).</p>
+                <p>This genre demands <strong>ethics, empathy, and courage</strong>. It reminds us that a photograph is not just an image — it is evidence.</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+    $(document).ready(function() {
+        // Плавный скролл к разделам (как в Technique)
+        $('.side_nav_a').click(function() {
+            let target = $(this).data('target');
+            let targetElement = $('#' + target);
+            if (targetElement.length) {
+                let targetPosition = targetElement.offset().top - 80;
+                $('html, body').animate({
+                    scrollTop: targetPosition
+                }, 400);
+            }
+        });
+    });
+</script>
+</body>
+</html>

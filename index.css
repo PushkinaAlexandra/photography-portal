@@ -1,0 +1,91 @@
+body {
+    font-family: 'Playfair Display';
+}
+.night {
+    background-color: #253022;
+    color: white;
+}
+h1 {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 60px;
+}
+table {
+    margin: auto;
+    padding: 5px;
+    border-spacing: 3rem 2rem;
+    border-collapse: separate;
+}
+.elem {
+    width: 500px;
+    height: 175px;
+    /*padding: 75px 100px;*/
+    background-color: black;
+    text-align: center;
+    font-size: 40px;
+    margin:20px;
+    border: double 0.3em;
+    transition: border 1s, text-decoration 1s;
+}
+.elem:hover {
+    border: none;
+    text-decoration: underline;
+    transition: border 1s, text-decoration 1s;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+/*
+.img_pers::before {
+    content:'';
+    background-image: URL('/Images/BG_Image_1.jpg');
+    background-size: cover;
+    opacity: 0.5;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}*/
+td.pers{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+td.genre{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+td.gall{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+td.tech{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+td.pers:hover{
+    background-image: URL('Images/Main_Menu/BG_Image_Pers.jpg');
+    background-size: cover;
+    opacity:0.5;
+    transition: opacity 0.5s;
+}
+td.gall:hover{
+    background-image: URL('Images/Main_Menu/BG_Image_Gall.jpg');
+    background-size: cover;
+    opacity:0.5;
+    transition: opacity 0.5s;
+}
+td.tech:hover{
+    background-image: URL('Images/Main_Menu/BG_Image_Tech.jpg');
+    background-size: cover;
+    opacity:0.5;
+    transition: opacity 0.5s;
+}
+td.genre:hover{
+    background-image: URL('Images/Main_Menu/BG_Image_Genre.jpg');
+    background-size: cover;
+    opacity:0.5;
+    transition: opacity 0.5s;
+}
