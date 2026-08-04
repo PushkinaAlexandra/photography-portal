@@ -15,7 +15,7 @@ fetch('../data/dh_photographers.json')
                 items.push({
                     id: p.id,
                     content: `${p.name}<br><small>${p.birthYear}–${p.deathYear}</small>`,
-                    start: new Date(p.birthYear, 0, 1), 
+                    start: new Date(p.birthYear, 0, 1),
                     end: new Date(p.deathYear, 0, 1),
                     type: 'range',
                     className: 'photographer',
@@ -42,8 +42,19 @@ fetch('../data/dh_photographers.json')
             max: new Date(2030, 0, 1)
         };
 
+        let TimelineClass;
 
-        const timeline = new vis.Timeline(container, items, options);
+        if (typeof vis !== 'undefined' && vis.Timeline) {
+            TimelineClass = vis.Timeline;
+        } else if (typeof vis !== 'undefined' && vis.timeline && vis.timeline.Timeline) {
+            TimelineClass = vis.timeline.Timeline;
+        } else if (typeof Timeline !== 'undefined') {
+            TimelineClass = Timeline;
+        } else {
+            throw new Error('Cant find Timeline Class. Check libraries);
+        }
+
+        const timeline = new TimelineClass(container, items, options);
 
         // --- Add legend ---
         const legend = document.createElement('div');
@@ -56,5 +67,8 @@ fetch('../data/dh_photographers.json')
     })
     .catch(error => {
         console.error('Error loading data:', error);
-        document.getElementById('timeline').innerHTML = '<p style="color:red;">Error loading data: ' + error.message + '</p>';
+        const timelineElement = document.getElementById('timeline');
+        if (timelineElement) {
+            timelineElement.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+        }
     });
