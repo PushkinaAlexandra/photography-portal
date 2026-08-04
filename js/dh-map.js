@@ -18,40 +18,41 @@ fetch('../data/dh_photographers.json')
         return response.json();
     })
     .then(function(photographers) {
-        // --- Count photographers per country ---
-        var countryCount = {};
+        // --- Count photographers per country and store names ---
+        var countryData = {};
         photographers.forEach(function(p) {
-            var country = p.country;
-            countryCount[country] = (countryCount[country] || 0) + 1;
+            if (!countryData[p.country]) {
+                countryData[p.country] = { count: 0, names: [] };
+            }
+            countryData[p.country].count += 1;
+            countryData[p.country].names.push(p.name);
         });
 
-        console.log('Countries:', countryCount);
-
-        // --- Initialize map with custom attribution ---
+        // --- Initialize map ---
         var map = L.map('map', {
-            attributionControl: false  // Disable default attribution
+            attributionControl: false
         }).setView([20, 0], 2);
 
-        // --- Add custom attribution control ---
+        // --- Add custom attribution ---
         L.control.attribution({
             position: 'bottomright',
-            prefix: false  // Remove "Leaflet" prefix
+            prefix: false
         }).addTo(map);
 
-        // --- Use OpenStreetMap tiles with minimal attribution ---
+        // --- Use OpenStreetMap tiles ---
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
             maxZoom: 19
         }).addTo(map);
 
         // --- Add markers for each country ---
-        Object.keys(countryCount).forEach(function(country) {
-            var count = countryCount[country];
+        Object.keys(countryData).forEach(function(country) {
+            var data = countryData[country];
             var coords = countryCoords[country];
 
             if (coords) {
                 var marker = L.circleMarker(coords, {
-                    radius: Math.min(count * 6, 30),
+                    radius: Math.min(data.count * 6, 30),
                     color: '#d4c9b8',
                     weight: 1.5,
                     opacity: 0.8,
@@ -59,21 +60,23 @@ fetch('../data/dh_photographers.json')
                     fillOpacity: 0.3
                 }).addTo(map);
 
+                // Create popup with list of photographers
+                var namesList = data.names.map(function(name) {
+                    return '• ' + name;
+                }).join('<br>');
+
                 marker.bindPopup(
                     '<strong>' + country + '</strong><br>' +
-                    count + ' photographer' + (count > 1 ? 's' : '')
+                    data.count + ' photographer' + (data.count > 1 ? 's' : '') +
+                    '<br><br>' + namesList
                 );
-            } else {
-                console.warn('No coordinates for country:', country);
             }
         });
-
-        console.log('Map initialized successfully');
     })
     .catch(function(error) {
         console.error('Error loading data:', error);
         var mapElement = document.getElementById('map');
         if (mapElement) {
-            mapElement.innerHTML = '<p style="color:red;">Error loading data. Please check that dh_photographers.json exists.</p>';
+            mapElement.innerHTML = '<p style="color:red;">Error loading data.</p>';
         }
     });
