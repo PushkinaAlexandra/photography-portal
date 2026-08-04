@@ -51,5 +51,5 @@ fetch('../data/dh_photographers.json')
         var timelineElement = document.getElementById('timeline');
         if (timelineElement) {
             timelineElement.innerHTML = '<p style="color:red;">Error loading data.</p>';
-        }
+            }
     });
