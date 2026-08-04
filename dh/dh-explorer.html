@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Explorer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #d4c9b8;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #b0a392;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #2a2a2a;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #d4c9b8;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        .card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+        .card p {
+            margin: 0;
+            color: #b0a392;
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #d4c9b8;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📚 DH Explorer</h1>
+    <p class="subtitle">Digital Humanities — Visualizing the History of Photography</p>
+    <div class="grid">
+        <a href="dh-genres.html" class="card">
+            <h2>📊</h2>
+            <h3>Genres</h3>
+            <p>Distribution by genre</p>
+        </a>
+        <a href="dh-timeline.html" class="card">
+            <h2>📅</h2>
+            <h3>Timeline</h3>
+            <p>Photographers and techniques</p>
+        </a>
+        <a href="dh-map.html" class="card">
+            <h2>🌍</h2>
+            <h3>Map</h3>
+            <p>Birthplaces of photographers</p>
+        </a>
+        <a href="dh-network.html" class="card" style="opacity:0.5;pointer-events:none;">
+            <h2>🔗</h2>
+            <h3>Network</h3>
+            <p>Coming soon</p>
+        </a>
+    </div>
+    <a href="../index.html" class="back-link">← Back to main site</a>
+</div>
+</body>
+</html>
