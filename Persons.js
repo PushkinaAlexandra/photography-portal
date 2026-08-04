@@ -1,51 +1,57 @@
 $(document).ready(function() {
+    // Get photographer id from URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var targetId = urlParams.get('id');
+
     // Load data from persons.json using fetch
     fetch('persons.json')
-        .then(response => {
+        .then(function(response) {
             if (!response.ok) {
                 throw new Error('HTTP error ' + response.status);
             }
             return response.json();
         })
-        .then(authorsData => {
+        .then(function(authorsData) {
             authorsData.forEach(function(authorData) {
-                let authorName = authorData.name;
-                let bio = authorData.bio;
-                let imageCount = authorData.imageCount;
+                var authorName = authorData.name;
+                var bio = authorData.bio;
+                var imageCount = authorData.imageCount;
+                var authorId = authorData.id;
 
                 // Create header
-                let head = document.createElement("div");
+                var head = document.createElement("div");
                 head.className = 'header';
                 head.append(authorName);
 
                 // Create slider container
-                let slider = document.createElement("div");
+                var slider = document.createElement("div");
                 slider.className = 'slider';
-                for (let i = 1; i <= imageCount; i++) {
-                    let name_file = 'Images/Persons/' + authorName.replaceAll(' ', '_') + '_Photo (' + i + ').jpg';
-                    let image = document.createElement("img");
+                for (var i = 1; i <= imageCount; i++) {
+                    var name_file = 'Images/Persons/' + authorName.replaceAll(' ', '_') + '_Photo (' + i + ').jpg';
+                    var image = document.createElement("img");
                     image.src = name_file;
                     image.className = 'slide-img';
                     slider.append(image);
                 }
 
                 // Create info block
-                let info = document.createElement("div");
+                var info = document.createElement("div");
                 info.className = 'info';
                 info.append(bio);
 
                 // Assemble structure
-                let content_out = document.createElement("div");
+                var content_out = document.createElement("div");
                 content_out.className = 'content';
-                let content_in = document.createElement("div");
+                var content_in = document.createElement("div");
                 content_in.className = 'content_in';
                 content_in.append(slider);
                 content_in.append(info);
                 content_out.append(content_in);
 
-                // Wrap everything into person block
-                let pers = document.createElement("div");
+                // Wrap everything into person block with id
+                var pers = document.createElement("div");
                 pers.className = 'person';
+                pers.id = 'person-' + authorId;
                 pers.append(head);
                 pers.append(content_out);
 
@@ -59,19 +65,36 @@ $(document).ready(function() {
             });
 
             // --- SLIDER LOGIC ---
-            let Image_Index = 0;
+            var Image_Index = 0;
             $('.slider img:first-child').show();
 
             $('.slider').click(function() {
-                let images = $(this).find('img');
+                var images = $(this).find('img');
                 if (images.length === 0) return;
-                let M = (Image_Index + 1) % images.length;
+                var M = (Image_Index + 1) % images.length;
                 images.fadeOut('fast');
                 images.eq(M).fadeIn('slow');
                 Image_Index = M;
             });
+
+            // --- AUTO-OPEN if id is specified in URL ---
+            if (targetId) {
+                var targetPerson = $('#person-' + targetId);
+                if (targetPerson.length > 0) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(function() {
+                        targetPerson.find('.content').slideDown('slow');
+                        // Scroll to the person
+                        $('html, body').animate({
+                            scrollTop: targetPerson.offset().top - 50
+                        }, 500);
+                    }, 300);
+                } else {
+                    console.warn('Person not found with id:', targetId);
+                }
+            }
         })
-        .catch(error => {
+        .catch(function(error) {
             console.error('Error loading persons.json:', error);
             $('.article').append('<p style="color:red; padding:20px;">Error loading data: ' + error.message + '</p>');
         });

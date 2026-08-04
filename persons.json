@@ -1,105 +1,126 @@
 [
   {
+    "id": "rodchenko",
     "name": "Alexander Rodchenko",
     "bio": "Aleksander Mikhailovich Rodchenko (5 December 1891 - 3 December 1956) was a Russian and Soviet artist, sculptor, photographer, and graphic designer. He was one of the founders of constructivism and Russian design; he was married to the artist Varvara Stepanova.\n\nRodchenko was one of the most versatile constructivist and productivist artists to emerge after the Russian Revolution. He worked as a painter and graphic designer before turning to photomontage and photography. His photography was socially engaged, formally innovative, and opposed to a painterly aesthetic. Concerned with the need for analytical-documentary photo series, he often shot his subjects from odd angles-usually high above or down below-to shock the viewer and to postpone recognition. He wrote: \n\n<<One has to take several different shots of a subject, from different points of view and in different situations, as if one examined it in the round rather than looked through the same key-hole again and again>>",
     "imageCount": 4
   },
   {
-    "name": "Andreas Gurski",
+    "id": "gursky",
+    "name": "Andreas Gursky",
     "bio": "Andreas Gursky (born 15 January 1955) is a German photographer and professor at the Kunstakademie Düsseldorf, Germany.\n\nHe is known for his large format architecture and landscape colour photographs, often using a high point of view. His works reach some of the highest prices in the art market among living photographers. His photograph Rhein II was sold for $4,338,500 on 8 November 2011.\n\nGursky shares a studio with Laurenz Berges, Thomas Ruff and Axel Hütte on the Hansaallee, in Düsseldorf. The building, a former electricity station, was transformed into an artists studio and living quarters, in 2001, by architects Herzog & de Meuron, of Tate Modern fame. In 2010-11, the architects worked again on the building, designing a gallery in the basement.",
     "imageCount": 4
   },
   {
+    "id": "warhol",
     "name": "Andy Warhol",
     "bio": "Andy Warhol (August 6, 1928 - February 22, 1987) was an American visual artist, film director and producer. A leading figure in the pop art movement, Warhol is considered one of the most important American artists of the second half of the 20th century. His works explore the relationship between artistic expression, advertising, and celebrity culture that flourished by the 1960s, and span a variety of media, including painting, silkscreening, photography, film, and sculpture. Some of his best-known works include the silkscreen paintings Campbell`s Soup Cans (1962) and Marilyn Diptych (1962), the experimental films Empire (1964) and Chelsea Girls (1966), and the multimedia events known as the Exploding Plastic Inevitable (1966-67).\n\nBorn and raised in Pittsburgh, Warhol initially pursued a successful career as a commercial illustrator in the 1950s. After exhibiting his work in art galleries, he began to receive recognition as an influential and controversial artist in the 1960s. His New York studio, The Factory, became a well-known gathering place that brought together distinguished intellectuals, drag queens, playwrights, Bohemian street people, Hollywood celebrities and wealthy patrons.",
     "imageCount": 4
   },
   {
-    "name": "Dorotea Lange",
+    "id": "lange",
+    "name": "Dorothea Lange",
     "bio": "Dorothea Lange (born Dorothea Margaretta Nutzhorn; May 26, 1895 - October 11, 1965) was an American documentary photographer and photojournalist, best known for her Depression-era work for the Farm Security Administration (FSA). Lange`s photographs influenced the development of documentary photography and humanized the consequences of the Great Depression.\n\nLange graduated from the Wadleigh High School for Girls, New York City; by this time, even though she had never owned or operated a camera, she had already decided that she would become a photographer. Lange began her study of photography at Columbia University under the tutelage of Clarence H. White, and later gained informal apprenticeships with several New York photography studios, including that of Arnold Genthe.",
     "imageCount": 4
   },
   {
+    "id": "burtynsky",
     "name": "Edward Burtynsky",
     "bio": "Edward Burtynsky OC RCA (born February 22, 1955) is a Canadian photographer and artist known for his large format photographs of industrial landscapes. His works depict locations from around the world that represent the increasing development of industrialization and its impacts on nature and the human existence. It is most often connected to the philosophical concept of the sublime, a trait established by the grand scale of the work he creates, though they are equally disturbing in the way they reveal the context of rapid industrialization.\n\nBurtynsky is the inaugural winner of the TED Prize for Innovation and Global Thinking in 2005. In 2016 he was the receiver of the Governor General`s Awards in Visual and Media Arts for his collection of works thus far.",
     "imageCount": 4
   },
   {
+    "id": "erwitt",
     "name": "Elliott Erwitt",
     "bio": "Elliott Erwitt (born Elio Romano Erwitz, July 26, 1928 - November 29, 2023) was a French-born American advertising and documentary photographer known for his black and white candid photos of ironic and absurd situations within everyday settings. He was a member of Magnum Photos from 1953.\n\nErwitt served as a photographer`s assistant in the 1950s in the United States Army while stationed in France and Germany. After moving to New York in 1948, he met the photographers Edward Steichen, Robert Capa and Roy Stryker. Stryker, the former Director of the Farm Security Administration`s photography department, hired Erwitt to work on a photography project for the Standard Oil Company. He then began a freelance photographer career and produced work for Collier`s, Look, Life and Holiday. Erwitt was invited to become a member of Magnum Photos by the founder Robert Capa in 1953.",
     "imageCount": 4
   },
   {
-    "name": "Ernst Hass",
+    "id": "haas",
+    "name": "Ernst Haas",
     "bio": "Ernst Haas (March 2, 1921 - September 12, 1986) was an Austrian-American photojournalist and color photographer. During his 40-year career, Haas bridged the gap between photojournalism and the use of photography as a medium for expression and creativity. In addition to his coverage of events around the globe after World War II, Haas was an early innovator in color photography. His images were disseminated by magazines like Life and Vogue and, in 1962, were the subject of the first single-artist exhibition of color photography at New York`s Museum of Modern Art. He served as president of the cooperative Magnum Photos, and his book The Creation (1971) was one of the most successful photography books ever, selling 350,000 copies.\n\nWarren Trabant showed Robert Capa, the war photographer, Haas`s <<Homecoming>> photographs before they were published. Upon reviewing his work, Capa invited Haas to travel to Paris and join the international photographic cooperative Magnum Photos, then two years old. Henri Cartier-Bresson, George Rodger, David <<Chim>> Seymour, Werner Bischof, and William Vandivert were already members.",
     "imageCount": 4
   },
   {
+    "id": "arnold",
     "name": "Eve Arnold",
     "bio": "Eve Arnold, OBE (honorary), FRPS (honorary) ( April 21, 1912 - January 4, 2012) was an American photojournalist, long-resident in the UK. She joined Magnum Photos agency in 1951, and became a full member in 1957. She was the first woman to join the agency. She frequently photographed Marilyn Monroe, including candid-style photos on the set of The Misfits (1961).\n\nArnold`s images of Marilyn Monroe on the set of The Misfits (1961) were perhaps her most memorable, but she had taken many photos of Monroe from 1951 onwards. The intimate candid-style photos achieve Arnold`s goal to show Monroe`s anxieties about being the subject of constant media attention. She befriended Monroe, Joan Crawford, and many other subjects in order to write about them and photograph them better. Her previously unseen photos of Monroe were shown at a Halcyon Gallery exhibition in London during May 2005. Travel characterized much of Arnold`s work, as she took interest in photographing the Civil rights and Black power movements in the United States as well as in the rigid Soviet Union and in China. Arnold always strived to go deeper with her photography; she even returned from some shoots with cigarette burns on her clothing from a disapproving crowd. She produced a film in 1971, Women Behind the Veil, focusing on Arabian harems and hammams.",
     "imageCount": 4
   },
   {
+    "id": "wearing",
     "name": "Gillian Wearing",
     "bio": "Gillian Wearing CBE, RA (born 10 December 1963) is an English conceptual artist, one of the Young British Artists, and winner of the 1997 Turner Prize. In 2007 Wearing was elected as lifetime member of the Royal Academy of Arts in London. Her statue of the suffragist Millicent Fawcett, popularly known as <<Hanging out the washing>>, stands in London's Parliament Square.\n\nFrom 5 November 2021 to 4 April 2022, the Solomon R. Guggenheim Museum in New York City showed Gillian Wearing: Wearing Masks, the first retrospective of Wearing`s work in North America.",
     "imageCount": 4
   },
   {
+    "id": "crewdson",
     "name": "Gregory Crewdson",
     "bio": "Crewdson was born in the Park Slope neighborhood of Brooklyn, New York. As a child, he attended Brooklyn Friends School, and then John Dewey High School.\n\nAs a teenager, he was part of a power pop group called the Speedies. Their song, <<Let Me Take Your Foto>> was in 2005 used by Hewlett-Packard in advertisements to promote its digital cameras.\n\nCrewdson attended Purchase College, State University of New York, where he initially planned to study psychology. At Purchase, he enrolled in a photography course taught by Laurie Simmons and also studied with Jan Groover. He received an MFA in photography from the Yale School of Art.",
     "imageCount": 4
   },
   {
-    "name": "Henri Cartier Bresson",
+    "id": "cartier-bresson",
+    "name": "Henri Cartier-Bresson",
     "bio": "Henri Cartier-Bresson (22 August 1908 - 3 August 2004) was a French artist and humanist photographer considered a master of candid photography, and an early user of 35mm film. He pioneered the genre of street photography, and viewed photography as capturing a decisive moment.\n\nCartier-Bresson was one of the founding members of Magnum Photos in 1947. In the 1970s, he largely discontinued his photographic work, instead opting to paint.",
     "imageCount": 4
   },
   {
+    "id": "berry",
     "name": "Ian Berry",
     "bio": "Ian Berry (born 1934) is a British photojournalist with Magnum Photos. He made his reputation in South Africa, where he worked for the Daily Mail and later for Drum magazine. He was the only photographer to document the massacre at Sharpeville in 1960, and his photographs were used in the trial to prove the victims` innocence. Ian Berry was also invited by Henri Cartier-Bresson to join Magnum Photos in 1962 when he was based in Paris; five years later he became a full member.",
     "imageCount": 4
   },
   {
+    "id": "wall",
     "name": "Jeff Wall",
     "bio": "Jeffrey Wall, OC, RSA (born September 29, 1946) is a Canadian photographer. He is artist best known for his large-scale back-lit Cibachrome photographs and art history writing. Early in his career, he helped define the Vancouver School and he has published essays on the work of his colleagues and fellow Vancouverites Rodney Graham, Ken Lum, and Ian Wallace. His photographic tableaux often take Vancouver`s mixture of natural beauty, urban decay, and postmodern and industrial featurelessness as their backdrop.",
     "imageCount": 4
   },
   {
+    "id": "cameron",
     "name": "Julia Margaret Cameron",
     "bio": "Julia Margaret Cameron (11 June 1815 - 26 January 1879) was a British photographer who is considered one of the most important portraitists of the 19th century. She is known for her soft-focus close-ups of famous Victorians and for illustrative images depicting characters from mythology, Christianity, and literature.\n\nShe was born in Calcutta, and after establishing herself among the Anglo-Indian upper-class, she moved to London where she made connections with the cultural elite. She then formed her own literary salon in the seaside village of Freshwater, Isle of Wight.\n\nCameron took up photography at the age of 48, after her daughter gave her a camera as a present. She quickly produced a large body of portraits, and created allegorical images inspired by tableaux vivants, theater, 15th-century Italian painters, and contemporary artists. She gathered much of her work in albums, including The Norman Album. She took around 900 photographs over a 12-year period.\n\nCameron`s work was contentious in her own time. Critics derided her softly focused and unrefined images, and considered her illustrative photographs amateurish. However, her portraits of artists and scientists such as Henry Taylor, Charles Darwin, and Sir John Herschel have been consistently praised. Her images have been described as <<extraordinarily powerful>> and <<wholly original>>, and she has been credited with producing the first close-ups in the medium.",
     "imageCount": 4
   },
   {
+    "id": "nadar",
     "name": "Nadar",
     "bio": "Gaspard-Félix Tournachon (5 April 1820 - 20 March 1910), known by the pseudonym Nadar, was a French photographer, caricaturist, journalist, novelist, balloonist, and proponent of heavier-than-air flight. In 1858, he became the first person to take aerial photographs.\n\nPhotographic portraits by Nadar are held by many of the great national collections of photographs. His son, Paul Nadar, continued the studio after his death.",
     "imageCount": 4
   },
   {
+    "id": "drew",
     "name": "Richard Drew",
     "bio": "Richard Drew (born December 6, 1946) is an Associated Press photo-journalist. In 2001, he took the photo titled The Falling Man, which captured the image of a man falling from the World Trade Center towers following the September 11 attacks. A British documentary 9/11: The Falling Man about the photo premiered on the Discovery Times channel on September 10, 2007.\n\nDrew was one of four press photographers present at the assassination of Robert F. Kennedy.",
     "imageCount": 4
   },
   {
+    "id": "doisneau",
     "name": "Robert Doisneau",
     "bio": "Robert Doisneau (14 April 1912 - 1 April 1994) was a French photographer. From the 1930s, he photographed the streets of Paris. He was a champion of humanist photography and, with Henri Cartier-Bresson, a pioneer of photojournalism.\n\nDoisneau is known for his 1950 image Le baiser de l'hôtel de ville (The Kiss by the City Hall), a photograph of a couple kissing on a busy Parisian street.\n\nHe was appointed a Chevalier (Knight) of the Legion of Honour in 1984 by then French president, Francois Mitterrand.",
     "imageCount": 4
   },
   {
+    "id": "aarons",
     "name": "Slim Aarons",
     "bio": "Slim Aarons (born George Allen Aarons; October 29, 1916 - May 30, 2006) was an American photographer noted for his images of socialites, jet-setters and celebrities. His work principally appeared in Life, Town & Country, and Holiday magazines.\n\nAt 18 years old, Aarons enlisted in the United States Army, worked as a photographer at the United States Military Academy, and later served as a combat photographer in World War II and earned a Purple Heart. Aarons said combat had taught him the only beach worth landing on was <<decorated with beautiful, seminude girls tanning in a tranquil sun.>>\n\nAfter the war, Aarons moved to California and began photographing celebrities. In California, he shot his most praised photo, Kings of Hollywood, a 1957 New`s Year`s Eve photograph depicting Clark Gable, Van Heflin, Gary Cooper, and James Stewart relaxing at a bar in full formal wear.",
     "imageCount": 4
   },
   {
+    "id": "mccurry",
     "name": "Steve McCurry",
     "bio": "Steve McCurry (born February 24, 1950) is an American photographer, freelancer, and photojournalist. His photo Afghan Girl, of a girl with piercing green eyes, has appeared on the cover of National Geographic several times. McCurry has photographed many assignments for National Geographic and has been a member of Magnum Photos since 1986.\n\nMcCurry is the recipient of numerous awards, including Magazine Photographer of the Year, awarded by the National Press Photographers Association; the Royal Photographic Society`s Centenary Medal; and two first-place prizes in the World Press Photo contest (1985 and 1992).",
     "imageCount": 4
   },
   {
+    "id": "struth",
     "name": "Thomas Struth",
     "bio": "Thomas Struth (born 11 October 1954) is a German photographer who is best known for his Museum Photographs series, black and white photographs of the streets of Düsseldorf and New York taken in the 1970s, and his family photographs series. Struth lives and works between Berlin and New York.",
     "imageCount": 4
   },
   {
+    "id": "anders",
     "name": "William Anders",
     "bio": "William Alison <<Bill>> Anders (born 17 October 1933) is an American former United States Air Force (USAF) major general, former electrical engineer, nuclear engineer, NASA astronaut, and businessman. In December 1968, he was a member of the crew of Apollo 8, the first three people to leave low Earth orbit and travel to the Moon. Along with fellow astronauts Frank Borman and Jim Lovell, Anders circled the Moon ten times, and broadcast live images and commentary back to Earth. During one of the mission's lunar orbits, he took the iconic Earthrise photograph.\n\nA graduate of the United States Naval Academy in Annapolis, Maryland, Anders was commissioned a second lieutenant in the United States Air Force (USAF) in 1955, and became a fighter pilot flying Northrop F-89 Scorpions equipped with MB-1 nuclear-tipped air-to-air missiles. He hoped to study aeronautical engineering through the Air Force Institute of Technology (AFIT) at Wright-Patterson Air Force Base in Ohio of Air University, but the Aircraft Nuclear Propulsion program was ongoing, and he had to study nuclear engineering instead. He graduated from the AFIT in 1962 with a Master of Science degree in nuclear engineering, and was sent to the Air Force Weapons Laboratory at Kirtland Air Force Base in New Mexico, where he managed the technical aspects of the USAF nuclear power reactor programs.",
     "imageCount": 4

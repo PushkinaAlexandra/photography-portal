@@ -1,43 +1,36 @@
 // --- Load data from JSON ---
 fetch('../data/dh_photographers.json')
     .then(function(response) {
-        console.log('Response status:', response.status);
         return response.json();
     })
     .then(function(photographers) {
-        console.log('Total photographers in JSON:', photographers.length);
-
         // --- Prepare data for Vis Timeline ---
         var items = [];
         var currentYear = new Date().getFullYear();
 
         // Add photographers as range items
         photographers.forEach(function(p) {
-            console.log('Processing:', p.name, 'birth:', p.birthYear, 'death:', p.deathYear);
-
             if (p.birthYear) {
                 // Use current year if photographer is still alive
                 var endYear = p.deathYear || currentYear;
                 var displayEnd = p.deathYear || 'present';
 
-                var item = {
+                // Create clickable link to Persons page (one level up from dh folder)
+                var link = '<a href="../Persons.html?id=' + p.id + '" style="color:white;text-decoration:none;font-weight:bold;">' +
+                           p.name + '</a>';
+
+                items.push({
                     id: p.id,
-                    content: p.name + '<br><small>' + p.birthYear + ' - ' + displayEnd + '</small>',
+                    content: link + '<br><small>' + p.birthYear + ' - ' + displayEnd + '</small>',
                     start: new Date(p.birthYear, 0, 1),
                     end: new Date(endYear, 0, 1),
                     type: 'range',
                     className: p.deathYear ? 'photographer' : 'photographer-alive'
-                };
-
-                console.log('Created item:', item);
-                items.push(item);
-            } else {
-                console.warn('Skipping:', p.name, '- no birth year');
+                });
             }
         });
 
-        console.log('Total items created:', items.length);
-        console.log('Items:', items);
+        console.log('Total photographers displayed:', items.length);
 
         // --- Initialize Timeline ---
         var container = document.getElementById('timeline');
@@ -46,8 +39,6 @@ fetch('../data/dh_photographers.json')
             console.error('Container #timeline not found');
             return;
         }
-
-        console.log('Container found:', container);
 
         var options = {
             stack: true,
@@ -60,15 +51,11 @@ fetch('../data/dh_photographers.json')
             zoomMax: 1000 * 60 * 60 * 24 * 365 * 200
         };
 
-        console.log('Creating timeline with options:', options);
-
         // Create timeline instance
         var timeline = new vis.Timeline(container, items, options);
 
         // Fit timeline to show all items
         timeline.fit();
-
-        console.log('Timeline created successfully');
     })
     .catch(function(error) {
         console.error('Error loading data:', error);

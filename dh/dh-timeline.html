@@ -60,6 +60,18 @@
         .vis-item.photographer-alive .vis-item-content small {
             opacity: 0.8;
         }
+        /* Make links in timeline visible */
+        .vis-item.photographer .vis-item-content a,
+        .vis-item.photographer-alive .vis-item-content a {
+            color: white !important;
+            text-decoration: none !important;
+            font-weight: bold !important;
+            transition: text-decoration 0.3s ease !important;
+        }
+        .vis-item.photographer .vis-item-content a:hover,
+        .vis-item.photographer-alive .vis-item-content a:hover {
+            text-decoration: underline !important;
+        }
         /* Timeline background */
         .vis-timeline {
             background: #2a2a2a;
@@ -128,7 +140,7 @@
 <body>
 <div class="container">
     <h1>📅 Timeline of Photography</h1>
-    <p class="subtitle">Photographer lifespans from 1800 to present day</p>
+    <p class="subtitle">Click on a photographer's name to view their biography</p>
     <div class="timeline-container" id="timeline"></div>
 
     <!-- Legend -->
