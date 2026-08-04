@@ -82,7 +82,9 @@ photography-portal/
 1. Clone the repository
 2. Use any HTTP server (Python, VS Code Live Server, IntelliJ built-in server)
 3. Open `index.html` in your browser
-🎯 Key Features in Detail
+
+##🎯 Key Features in Detail
+
 1. Smart Century Filtering (Genres Chart)
 Photographers can belong to multiple centuries if they were active (from age 16) for at least 10 years in each century. This ensures accurate representation for long-lived photographers.
 
@@ -106,7 +108,7 @@ Click on any photographer's name in the timeline → opens Persons.html with the
 Markers scale by the number of photographers in each country; popups list all names.
 
 📝 Author
-Alexandra Pushkina
+** Aleksandra Pushkina**
 
 🏷️ Tags
-Digital Humanities Art History Photography Data Visualization GLAM Interactive Gallery Timeline Network Graph Mapping Chart.js Vis.js Leaflet Masonry jQuery HTML CSS JavaScript
+`Digital Humanities` `Art History` `Photography` `Data Visualization` `GLAM` `Interactive Gallery` `Timeline` `Network` `Graph` `Mapping` `Chart.js` `Vis.js` `Masonry` `jQuery` `HTML` `CSS` `JavaScript`
