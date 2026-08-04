@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DH Explorer — Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #d4c9b8;
+            border-bottom: 2px solid #d4c9b8;
+            padding-bottom: 10px;
+        }
+        .subtitle {
+            color: #b0a392;
+            margin-bottom: 20px;
+        }
+
+        /* --- Filter bar --- */
+        .filter-bar {
+            background: #2a2a2a;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .filter-bar label {
+            color: #b0a392;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .filter-bar select {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 1px solid rgba(212, 201, 184, 0.2);
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .filter-bar select:hover {
+            border-color: #d4c9b8;
+        }
+        .filter-bar select:focus {
+            border-color: #d4c9b8;
+            box-shadow: 0 0 0 2px rgba(212, 201, 184, 0.1);
+        }
+        .filter-bar .filter-info {
+            color: #666;
+            font-size: 13px;
+            margin-left: auto;
+        }
+
+        .network-container {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            height: 700px;
+            position: relative;
+        }
+        #network {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* --- Legend --- */
+        .legend {
+            margin-top: 15px;
+            color: #b0a392;
+            font-size: 13px;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+        .legend-color.photographer {
+            background-color: #4a6a8a;
+        }
+        .legend-color.group {
+            background-color: #d4c9b8;
+        }
+        .legend-color.genre {
+            background-color: #8a6a4a;
+        }
+        .legend-color.technique {
+            background-color: #6a8a4a;
+        }
+        .legend-color.teacher {
+            background-color: #8a4a6a;
+        }
+
+        /* Edge legend */
+        .legend-edge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-edge-line {
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+        }
+        .legend-edge-line.member {
+            background-color: #d4c9b8;
+        }
+        .legend-edge-line.magnum {
+            background-color: #d4c9b8;
+            border-top: 2px dashed #d4c9b8;
+            height: 0;
+        }
+        .legend-edge-line.genre {
+            background-color: #8a6a4a;
+        }
+        .legend-edge-line.technique {
+            background-color: #6a8a4a;
+        }
+        .legend-edge-line.teacher {
+            background-color: #8a4a6a;
+            border-top: 2px solid #8a4a6a;
+            height: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #d4c9b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #f0e6d4;
+            text-decoration: underline;
+        }
+
+        /* Vis.js overrides */
+        .vis-network {
+            background: #1a1a1a !important;
+        }
+        .vis-tooltip {
+            background: rgba(26, 26, 26, 0.95) !important;
+            color: #e0e0e0 !important;
+            border: 1px solid rgba(212, 201, 184, 0.2) !important;
+            border-radius: 8px !important;
+            padding: 10px 14px !important;
+            font-size: 13px !important;
+            max-width: 300px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔗 Network of Photographers</h1>
+    <p class="subtitle">Explore connections between photographers, groups, genres and techniques</p>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <label for="filterSelect">🔍 Focus on:</label>
+        <select id="filterSelect">
+            <option value="all">All connections</option>
+            <option value="magnum">Magnum Photos</option>
+            <option value="teachers">Teacher-Student</option>
+            <option value="groups">Groups</option>
+            <option value="genres">Genres</option>
+            <option value="techniques">Techniques</option>
+        </select>
+        <span class="filter-info" id="filterInfo">Drag to explore · Scroll to zoom</span>
+    </div>
+
+    <!-- Network -->
+    <div class="network-container">
+        <div id="network"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+        <span class="legend-item">
+            <span class="legend-color photographer"></span>
+            Photographer
+        </span>
+        <span class="legend-item">
+            <span class="legend-color group"></span>
+            Group
+        </span>
+        <span class="legend-item">
+            <span class="legend-color genre"></span>
+            Genre
+        </span>
+        <span class="legend-item">
+            <span class="legend-color technique"></span>
+            Technique
+        </span>
+        <span class="legend-item">
+            <span class="legend-color teacher"></span>
+            Teacher
+        </span>
+        <span class="legend-edge">
+            <span class="legend-edge-line member"></span>
+            Member of
+        </span>
+        <span class="legend-edge">
+            <span class="legend-edge-line magnum"></span>
+            Magnum
+        </span>
+        <span class="legend-edge">
+            <span class="legend-edge-line teacher"></span>
+            Taught by
+        </span>
+    </div>
+
+    <a href="dh-explorer.html" class="back-link">← Back to Explorer</a>
+</div>
+<script src="../js/dh-network.js"></script>
+</body>
+</html>

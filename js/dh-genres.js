@@ -215,7 +215,7 @@ function renderChart(centuryFilter) {
         filterInfo.textContent = totalGenres + ' genres, ' + totalPhotographers + ' photographers';
     } else {
         var label = getCenturyLabel(parseInt(centuryFilter));
-        subtitle.textContent = 'Showing photographers active in ' + label + ' (age 16+)';
+        subtitle.textContent = 'Showing photographers active in ' + label;
         filterInfo.textContent = totalGenres + ' genres, ' + totalPhotographers + ' photographers';
     }
 }
