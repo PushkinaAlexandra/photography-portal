@@ -10,7 +10,7 @@ const countryCoords = {
 };
 
 // --- Load data ---
-fetch('/data/dh_photographers.json')
+fetch('../data/dh_photographers.json')
     .then(response => response.json())
     .then(photographers => {
         // --- Count photographers per country ---
