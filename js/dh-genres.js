@@ -3,11 +3,37 @@ var allGenreData = {};
 var allPhotographers = [];
 var currentCentury = 'all';
 
-// --- Helper function to determine century ---
-function getCentury(year) {
-    if (!year) return null;
-    var century = Math.ceil(year / 100);
-    return century;
+// --- Helper function to determine which century a photographer belongs to ---
+function getPhotographerCentury(photographer) {
+    if (!photographer.birthYear) return null;
+
+    var birth = photographer.birthYear;
+    var death = photographer.deathYear || new Date().getFullYear();
+    var activeStart = birth + 16; // Age 16 - start of professional career
+
+    // Check each century
+    var centuries = [
+        { num: 19, start: 1800, end: 1899 },
+        { num: 20, start: 1900, end: 1999 },
+        { num: 21, start: 2000, end: 2099 }
+    ];
+
+    // Find which century the photographer was active in (at least 16 years old)
+    for (var i = 0; i < centuries.length; i++) {
+        var c = centuries[i];
+        // How many years did photographer live in this century?
+        var overlapStart = Math.max(activeStart, c.start);
+        var overlapEnd = Math.min(death, c.end);
+        var overlapYears = Math.max(0, overlapEnd - overlapStart);
+
+        // If at least 16 years of activity in this century
+        if (overlapYears >= 16) {
+            return c.num;
+        }
+    }
+
+    // Fallback: if not found, use birth century
+    return Math.ceil(birth / 100);
 }
 
 // --- Helper function to get century label ---
@@ -26,16 +52,21 @@ fetch('../data/dh_photographers.json')
     .then(function(photographers) {
         allPhotographers = photographers;
 
+        // --- Log which century each photographer belongs to (for debugging) ---
+        photographers.forEach(function(p) {
+            var century = getPhotographerCentury(p);
+            console.log(p.name + ' → ' + getCenturyLabel(century) + ' (born ' + p.birthYear + ', died ' + (p.deathYear || 'alive') + ')');
+        });
+
         // --- Count genres for ALL photographers ---
         allGenreData = {};
         photographers.forEach(function(p) {
             p.genres.forEach(function(genre) {
                 if (!allGenreData[genre]) {
-                    allGenreData[genre] = { count: 0, names: [], centuries: [] };
+                    allGenreData[genre] = { count: 0, names: [] };
                 }
                 allGenreData[genre].count += 1;
                 allGenreData[genre].names.push(p.name);
-                allGenreData[genre].centuries.push(getCentury(p.birthYear));
             });
         });
 
@@ -70,17 +101,15 @@ fetch('../data/dh_photographers.json')
 
 // --- Render chart function ---
 function renderChart(centuryFilter) {
-    // --- Filter data by century ---
     var filteredData = {};
 
     if (centuryFilter === 'all') {
-        // Use all data
-        filteredData = allGenreData;
+        filteredData = JSON.parse(JSON.stringify(allGenreData));
     } else {
         var centuryNum = parseInt(centuryFilter);
-        // Filter photographers by century
+        // Filter photographers by their active century
         var filteredPhotographers = allPhotographers.filter(function(p) {
-            return getCentury(p.birthYear) === centuryNum;
+            return getPhotographerCentury(p) === centuryNum;
         });
 
         // Count genres for filtered photographers
@@ -103,7 +132,7 @@ function renderChart(centuryFilter) {
     var data = sortedGenres.map(function(item) { return item[1].count; });
     var allNames = sortedGenres.map(function(item) { return item[1].names; });
 
-    // --- Destroy existing chart if it exists ---
+    // --- Destroy existing chart ---
     var ctx = document.getElementById('genreChart').getContext('2d');
     if (window.genreChartInstance) {
         window.genreChartInstance.destroy();
@@ -165,13 +194,18 @@ function renderChart(centuryFilter) {
         }
     });
 
-    // --- Update subtitle with filter info ---
+    // --- Update subtitle ---
     var subtitle = document.getElementById('filterSubtitle');
+    var filterInfo = document.getElementById('filterInfo');
+    var totalGenres = Object.keys(filteredData).length;
+    var totalPhotographers = Object.values(filteredData).reduce(function(sum, g) { return sum + g.count; }, 0);
+
     if (centuryFilter === 'all') {
         subtitle.textContent = 'Showing all photographers across all centuries';
+        filterInfo.textContent = totalGenres + ' genres, ' + totalPhotographers + ' photographers';
     } else {
         var label = getCenturyLabel(parseInt(centuryFilter));
-        var count = Object.keys(filteredData).length;
-        subtitle.textContent = 'Showing photographers from ' + label + ' (' + count + ' genres represented)';
+        subtitle.textContent = 'Showing photographers active in ' + label + ' (age 16+)';
+        filterInfo.textContent = totalGenres + ' genres, ' + totalPhotographers + ' photographers';
     }
 }
