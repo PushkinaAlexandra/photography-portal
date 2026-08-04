@@ -296,8 +296,7 @@ function buildNetwork(filter) {
             shape: 'dot',
             size: 12,
             font: { color: '#e0e0e0', size: 12 },
-            borderWidth: 1,
-            borderColor: 'rgba(212, 201, 184, 0.3)'
+            borderWidth: 1
         },
         edges: {
             smooth: { type: 'continuous', roundness: 0.2 },
