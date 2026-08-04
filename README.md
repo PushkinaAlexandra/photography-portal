@@ -82,6 +82,8 @@ photography-portal/
 2. Use any HTTP server (Python, VS Code Live Server, IntelliJ built-in server)
 3. Open `index.html` in your browser
 
+---
+
 ## 🎯 Key Features in Detail
 
 1. Smart Century Filtering (Genres Chart)
@@ -106,8 +108,16 @@ Click on any photographer's name in the timeline → opens Persons.html with the
 4. Interactive Map
 Markers scale by the number of photographers in each country; popups list all names.
 
-📝 Author
-** Aleksandra Pushkina**
+---
 
-🏷️ Tags
+## 📝 Author
+
+
+**Aleksandra Pushkina**
+
+---
+
+## 🏷️ Tags
+
+
 `Digital Humanities` `Art History` `Photography` `Data Visualization` `GLAM` `Interactive Gallery` `Timeline` `Network` `Graph` `Mapping` `Chart.js` `Vis.js` `Masonry` `jQuery` `HTML` `CSS` `JavaScript`
