@@ -1,5 +1,10 @@
 fetch('../data/dh_photographers.json')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(photographers => {
         // --- Prepare data for Vis Timeline ---
         const items = [];
@@ -10,8 +15,8 @@ fetch('../data/dh_photographers.json')
                 items.push({
                     id: p.id,
                     content: `${p.name}<br><small>${p.birthYear}–${p.deathYear}</small>`,
-                    start: p.birthYear,
-                    end: p.deathYear,
+                    start: new Date(p.birthYear, 0, 1), 
+                    end: new Date(p.deathYear, 0, 1),
                     type: 'range',
                     className: 'photographer',
                     style: 'background-color: #4a6a8a; border-color: #4a6a8a;'
@@ -21,13 +26,22 @@ fetch('../data/dh_photographers.json')
 
         // --- Initialize Timeline ---
         const container = document.getElementById('timeline');
+
+        if (!container) {
+            console.error('Container #timeline not found');
+            return;
+        }
+
         const options = {
             stack: true,
             showCurrentTime: false,
             orientation: 'top',
             groupOrder: 'content',
-            height: '100%'
+            height: '100%',
+            min: new Date(1800, 0, 1),
+            max: new Date(2030, 0, 1)
         };
+
 
         const timeline = new vis.Timeline(container, items, options);
 
@@ -42,5 +56,5 @@ fetch('../data/dh_photographers.json')
     })
     .catch(error => {
         console.error('Error loading data:', error);
-        document.getElementById('timeline').innerHTML = '<p style="color:red;">Error loading data.</p>';
+        document.getElementById('timeline').innerHTML = '<p style="color:red;">Error loading data: ' + error.message + '</p>';
     });
