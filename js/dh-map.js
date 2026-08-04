@@ -27,8 +27,16 @@ fetch('../data/dh_photographers.json')
 
         console.log('Countries:', countryCount);
 
-        // --- Initialize map ---
-        var map = L.map('map').setView([20, 0], 2);
+        // --- Initialize map with custom attribution ---
+        var map = L.map('map', {
+            attributionControl: false  // Disable default attribution
+        }).setView([20, 0], 2);
+
+        // --- Add custom attribution control ---
+        L.control.attribution({
+            position: 'bottomright',
+            prefix: false  // Remove "Leaflet" prefix
+        }).addTo(map);
 
         // --- Use OpenStreetMap tiles with minimal attribution ---
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
