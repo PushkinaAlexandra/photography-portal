@@ -27,6 +27,10 @@
             border-bottom: 2px solid #d4c9b8;
             padding-bottom: 10px;
         }
+        .subtitle {
+            color: #b0a392;
+            margin-bottom: 20px;
+        }
         .timeline-container {
             background: #2a2a2a;
             padding: 20px;
@@ -41,22 +45,104 @@
             color: white;
             border-radius: 4px;
         }
+        .vis-item.photographer-alive {
+            background-color: #6a8a4a;
+            border-color: #6a8a4a;
+            color: white;
+            border-radius: 4px;
+        }
+        .vis-item.photographer .vis-item-content,
+        .vis-item.photographer-alive .vis-item-content {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+        .vis-item.photographer .vis-item-content small,
+        .vis-item.photographer-alive .vis-item-content small {
+            opacity: 0.8;
+        }
+        /* Timeline background */
+        .vis-timeline {
+            background: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        .vis-panel {
+            background: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        .vis-label {
+            color: #b0a392;
+        }
+        .vis-text {
+            color: #b0a392;
+        }
+        .vis-major {
+            color: #d4c9b8;
+        }
+        .vis-grid {
+            border-color: #3a3a3a;
+        }
+        .vis-grid.vis-minor {
+            border-color: #333333;
+        }
+        .vis-time-axis .vis-text {
+            color: #b0a392;
+        }
         .back-link {
             display: inline-block;
             margin-top: 20px;
             color: #d4c9b8;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .back-link:hover {
+            color: #f0e6d4;
             text-decoration: underline;
+        }
+        .legend {
+            margin-top: 10px;
+            color: #b0a392;
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .legend-color.deceased {
+            background-color: #4a6a8a;
+        }
+        .legend-color.alive {
+            background-color: #6a8a4a;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>📅 Timeline of Photography</h1>
-    <p>Photographers and techniques over time.</p>
+    <p class="subtitle">Photographer lifespans from 1800 to present day</p>
     <div class="timeline-container" id="timeline"></div>
+
+    <!-- Legend -->
+    <div class="legend">
+        <span class="legend-item">
+            <span class="legend-color deceased"></span>
+            Deceased
+        </span>
+        <span class="legend-item">
+            <span class="legend-color alive"></span>
+            Alive
+        </span>
+    </div>
+
     <a href="dh-explorer.html" class="back-link">← Back to Explorer</a>
 </div>
 <script src="../js/dh-timeline.js"></script>
