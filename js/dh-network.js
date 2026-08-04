@@ -8,16 +8,16 @@ var allPhotographers = [];
 function getGroupColor(groupName) {
     var colors = {
         'Magnum Photos': '#d4c9b8',
-        'October Group': '#8a6a4a',
-        'Constructivists': '#6a8a4a',
-        'Düsseldorf School of Photography': '#4a6a8a',
-        'The Factory': '#8a4a6a',
-        'Farm Security Administration (FSA)': '#4a8a6a',
-        'Groupe des XV': '#6a4a8a',
-        'Young British Artists (YBAs)': '#8a6a4a',
-        'Vancouver School': '#4a6a8a',
-        'Associated Press': '#6a8a4a',
-        'NASA Astronaut Group 3': '#8a4a6a'
+        'October Group': '#c9b8a4',
+        'Constructivists': '#b8c9a4',
+        'Düsseldorf School of Photography': '#a4b8c9',
+        'The Factory': '#c9a4b8',
+        'Farm Security Administration (FSA)': '#a4c9b8',
+        'Groupe des XV': '#b8a4c9',
+        'Young British Artists (YBAs)': '#c9b8a4',
+        'Vancouver School': '#a4b8c9',
+        'Associated Press': '#b8c9a4',
+        'NASA Astronaut Group 3': '#c9a4b8'
     };
     return colors[groupName] || '#d4c9b8';
 }
@@ -67,8 +67,9 @@ function buildNetwork(filter) {
             group: 'photographer',
             title: p.name + '\n' + p.birthYear + '–' + (p.deathYear || 'present') + '\n' + p.country + '\n' + p.genres.join(', '),
             shape: 'dot',
-            size: 12,
-            font: { color: '#e0e0e0', size: 12 }
+            size: 14,
+            font: { color: '#e0e0e0', size: 12 },
+            color: { background: '#4a6a8a', border: '#d4c9b8' }
         });
         nodeIds.add(p.id);
         photographerIds.add(p.id);
@@ -90,7 +91,7 @@ function buildNetwork(filter) {
                     group: 'group',
                     shape: 'box',
                     size: 20,
-                    font: { color: '#d4c9b8', size: 14, face: 'Playfair Display' },
+                    font: { color: '#1a1a1a', size: 14, face: 'Playfair Display', bold: true },
                     color: { background: getGroupColor(group), border: '#d4c9b8' }
                 });
                 nodeIds.add(groupId);
@@ -120,7 +121,7 @@ function buildNetwork(filter) {
                     group: 'group',
                     shape: 'box',
                     size: 24,
-                    font: { color: '#d4c9b8', size: 16, face: 'Playfair Display' },
+                    font: { color: '#1a1a1a', size: 16, face: 'Playfair Display', bold: true },
                     color: { background: '#d4c9b8', border: '#d4c9b8' }
                 });
                 nodeIds.add(magnumGroupId);
@@ -173,9 +174,9 @@ function buildNetwork(filter) {
                     label: genre,
                     group: 'genre',
                     shape: 'ellipse',
-                    size: 15,
-                    font: { color: '#b0a392', size: 11 },
-                    color: { background: 'rgba(138, 106, 74, 0.3)', border: '#8a6a4a' }
+                    size: 16,
+                    font: { color: '#e0e0e0', size: 11 },
+                    color: { background: 'rgba(138, 106, 74, 0.4)', border: '#8a6a4a' }
                 });
                 nodeIds.add(genreId);
             }
@@ -204,9 +205,9 @@ function buildNetwork(filter) {
                         label: technique,
                         group: 'technique',
                         shape: 'diamond',
-                        size: 12,
-                        font: { color: '#b0a392', size: 10 },
-                        color: { background: 'rgba(106, 138, 74, 0.3)', border: '#6a8a4a' }
+                        size: 14,
+                        font: { color: '#e0e0e0', size: 10 },
+                        color: { background: 'rgba(106, 138, 74, 0.4)', border: '#6a8a4a' }
                     });
                     nodeIds.add(techId);
                 }
@@ -294,7 +295,6 @@ function buildNetwork(filter) {
         var edgeId = e.id || e.from + '_' + e.to;
         if (filter === 'all') return true;
         if (filter === 'magnum') {
-            // For magnum, show all edges connected to magnum members
             var fromIn = filteredNodeIds.has(e.from);
             var toIn = filteredNodeIds.has(e.to);
             return fromIn && toIn;
@@ -367,7 +367,8 @@ function buildNetwork(filter) {
             group: {
                 color: { background: '#d4c9b8', border: '#d4c9b8' },
                 shape: 'box',
-                size: 20
+                size: 20,
+                font: { color: '#1a1a1a', size: 14, face: 'Playfair Display', bold: true }
             },
             genre: {
                 color: { background: 'rgba(138, 106, 74, 0.4)', border: '#8a6a4a' },
@@ -383,11 +384,6 @@ function buildNetwork(filter) {
     };
 
     network = new vis.Network(container, data, options);
-
-    // --- Update hover tooltip styling ---
-    network.on('hoverNode', function(params) {
-        // Custom tooltip is handled by vis.js automatically via 'title' field
-    });
 }
 
 // --- Filter change handler ---
