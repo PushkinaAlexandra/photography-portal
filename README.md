@@ -72,7 +72,6 @@ photography-portal/
 | `genres` | Array of genres (e.g., `["Street photography", "Documentary"]`) |
 | `techniques` | Array of techniques (e.g., `["35mm film", "Leica camera"]`) |
 | `groups` | Array of groups (e.g., `["Magnum Photos"]`) |
-| `teachers` / `students` | Arrays of IDs for educational connections |
 | `magnum` | Boolean indicating Magnum Photos membership |
 
 ---
@@ -83,7 +82,7 @@ photography-portal/
 2. Use any HTTP server (Python, VS Code Live Server, IntelliJ built-in server)
 3. Open `index.html` in your browser
 
-##🎯 Key Features in Detail
+## 🎯 Key Features in Detail
 
 1. Smart Century Filtering (Genres Chart)
 Photographers can belong to multiple centuries if they were active (from age 16) for at least 10 years in each century. This ensures accurate representation for long-lived photographers.
