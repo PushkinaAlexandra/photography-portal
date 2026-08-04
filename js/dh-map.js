@@ -10,24 +10,14 @@ var countryCoords = {
 };
 
 // --- Load data ---
-// Try multiple possible paths
-var jsonPath = '../data/dh_photographers.json';
-
-console.log('Attempting to load:', jsonPath);
-
-fetch(jsonPath)
+fetch('../data/dh_photographers.json')
     .then(function(response) {
-        console.log('Response status:', response.status);
-        console.log('Response URL:', response.url);
-
         if (!response.ok) {
-            throw new Error('HTTP error! status: ' + response.status + ' - ' + response.statusText);
+            throw new Error('HTTP error! status: ' + response.status);
         }
         return response.json();
     })
     .then(function(photographers) {
-        console.log('Loaded', photographers.length, 'photographers');
-
         // --- Count photographers per country ---
         var countryCount = {};
         photographers.forEach(function(p) {
@@ -35,13 +25,15 @@ fetch(jsonPath)
             countryCount[country] = (countryCount[country] || 0) + 1;
         });
 
-        console.log('Country counts:', countryCount);
+        console.log('Countries:', countryCount);
 
         // --- Initialize map ---
         var map = L.map('map').setView([20, 0], 2);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        // --- Use OpenStreetMap tiles with minimal attribution ---
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+            maxZoom: 19
         }).addTo(map);
 
         // --- Add markers for each country ---
@@ -53,10 +45,10 @@ fetch(jsonPath)
                 var marker = L.circleMarker(coords, {
                     radius: Math.min(count * 6, 30),
                     color: '#d4c9b8',
-                    weight: 1,
+                    weight: 1.5,
                     opacity: 0.8,
                     fillColor: '#d4c9b8',
-                    fillOpacity: 0.4
+                    fillOpacity: 0.3
                 }).addTo(map);
 
                 marker.bindPopup(
@@ -74,6 +66,6 @@ fetch(jsonPath)
         console.error('Error loading data:', error);
         var mapElement = document.getElementById('map');
         if (mapElement) {
-            mapElement.innerHTML = '<p style="color:red;">Error loading data. Please check that dh_photographers.json exists at: ' + jsonPath + '</p>';
+            mapElement.innerHTML = '<p style="color:red;">Error loading data. Please check that dh_photographers.json exists.</p>';
         }
     });
