@@ -3,54 +3,41 @@ var allGenreData = {};
 var allPhotographers = [];
 var currentCentury = 'all';
 
-// --- Helper function to determine which century a photographer belongs to ---
-function getPhotographerCentury(photographer) {
-    if (!photographer.birthYear) return null;
+// --- Helper function to determine which centuries a photographer belongs to ---
+function getPhotographerCenturies(photographer) {
+    if (!photographer.birthYear) return [];
 
     var birth = photographer.birthYear;
     var death = photographer.deathYear || new Date().getFullYear();
     var activeStart = birth + 16; // Age 16 - start of professional career
+    var activeEnd = death;
 
-    // Check each century
-    var centuries = [
+    var centuries = [];
+    var centuryRanges = [
         { num: 19, start: 1800, end: 1899 },
         { num: 20, start: 1900, end: 1999 },
         { num: 21, start: 2000, end: 2099 }
     ];
 
-    var bestCentury = null;
-    var maxOverlap = 0;
-
-    for (var i = 0; i < centuries.length; i++) {
-        var c = centuries[i];
-        // How many years did photographer live in this century (from age 16)?
+    for (var i = 0; i < centuryRanges.length; i++) {
+        var c = centuryRanges[i];
+        // How many years did photographer work in this century (from age 16)?
         var overlapStart = Math.max(activeStart, c.start);
-        var overlapEnd = Math.min(death, c.end);
+        var overlapEnd = Math.min(activeEnd, c.end);
         var overlapYears = Math.max(0, overlapEnd - overlapStart);
 
-        if (overlapYears > maxOverlap) {
-            maxOverlap = overlapYears;
-            bestCentury = c.num;
+        // If at least 10 years of activity in this century, include it
+        if (overlapYears >= 10) {
+            centuries.push(c.num);
         }
     }
 
-    // If still null, fallback to birth century
-    if (bestCentury === null) {
-        bestCentury = Math.ceil(birth / 100);
+    // If no century found (shouldn't happen), use birth century
+    if (centuries.length === 0) {
+        centuries.push(Math.ceil(birth / 100));
     }
 
-    // Special case: if photographer is alive and born after 1950,
-    // they likely belong to XXI century
-    if (photographer.deathYear === null && birth >= 1950) {
-        var currentYear = new Date().getFullYear();
-        var yearsIn21 = currentYear - Math.max(activeStart, 2000);
-        var yearsIn20 = Math.min(1999, activeStart) - Math.max(birth, 1900);
-        if (yearsIn21 > yearsIn20) {
-            bestCentury = 21;
-        }
-    }
-
-    return bestCentury;
+    return centuries;
 }
 
 // --- Helper function to get century label ---
@@ -69,11 +56,12 @@ fetch('../data/dh_photographers.json')
     .then(function(photographers) {
         allPhotographers = photographers;
 
-        // --- Log which century each photographer belongs to (for debugging) ---
+        // --- Log which centuries each photographer belongs to ---
         console.log('=== Photographer century assignment ===');
         photographers.forEach(function(p) {
-            var century = getPhotographerCentury(p);
-            console.log(p.name + ' → ' + getCenturyLabel(century) + ' (born ' + p.birthYear + ', died ' + (p.deathYear || 'alive') + ')');
+            var centuries = getPhotographerCenturies(p);
+            var labels = centuries.map(function(c) { return getCenturyLabel(c); }).join(', ');
+            console.log(p.name + ' → ' + labels + ' (born ' + p.birthYear + ', died ' + (p.deathYear || 'alive') + ')');
         });
         console.log('========================================');
 
@@ -126,9 +114,10 @@ function renderChart(centuryFilter) {
         filteredData = JSON.parse(JSON.stringify(allGenreData));
     } else {
         var centuryNum = parseInt(centuryFilter);
-        // Filter photographers by their active century
+        // Filter photographers who belong to this century
         var filteredPhotographers = allPhotographers.filter(function(p) {
-            return getPhotographerCentury(p) === centuryNum;
+            var centuries = getPhotographerCenturies(p);
+            return centuries.indexOf(centuryNum) !== -1;
         });
 
         console.log('Filtered photographers for ' + getCenturyLabel(centuryNum) + ':', filteredPhotographers.map(function(p) { return p.name; }));
