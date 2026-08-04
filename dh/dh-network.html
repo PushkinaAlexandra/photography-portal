@@ -118,9 +118,6 @@
         .legend-color.technique {
             background-color: #6a8a4a;
         }
-        .legend-color.teacher {
-            background-color: #8a4a6a;
-        }
 
         /* Edge legend */
         .legend-edge {
@@ -134,23 +131,18 @@
             height: 2px;
         }
         .legend-edge-line.member {
-            background-color: #d4c9b8;
+            background-color: rgba(212, 201, 184, 0.4);
         }
         .legend-edge-line.magnum {
-            background-color: #d4c9b8;
             border-top: 2px dashed #d4c9b8;
             height: 0;
+            width: 30px;
         }
         .legend-edge-line.genre {
-            background-color: #8a6a4a;
+            background-color: rgba(138, 106, 74, 0.3);
         }
         .legend-edge-line.technique {
-            background-color: #6a8a4a;
-        }
-        .legend-edge-line.teacher {
-            background-color: #8a4a6a;
-            border-top: 2px solid #8a4a6a;
-            height: 0;
+            background-color: rgba(106, 138, 74, 0.25);
         }
 
         .back-link {
@@ -191,7 +183,6 @@
         <select id="filterSelect">
             <option value="all">All connections</option>
             <option value="magnum">Magnum Photos</option>
-            <option value="teachers">Teacher-Student</option>
             <option value="groups">Groups</option>
             <option value="genres">Genres</option>
             <option value="techniques">Techniques</option>
@@ -222,10 +213,6 @@
             <span class="legend-color technique"></span>
             Technique
         </span>
-        <span class="legend-item">
-            <span class="legend-color teacher"></span>
-            Teacher
-        </span>
         <span class="legend-edge">
             <span class="legend-edge-line member"></span>
             Member of
@@ -235,8 +222,12 @@
             Magnum
         </span>
         <span class="legend-edge">
-            <span class="legend-edge-line teacher"></span>
-            Taught by
+            <span class="legend-edge-line genre"></span>
+            Genre
+        </span>
+        <span class="legend-edge">
+            <span class="legend-edge-line technique"></span>
+            Technique
         </span>
     </div>
 

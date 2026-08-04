@@ -77,7 +77,6 @@ function buildNetwork(filter) {
 
     // --- Track which groups to add ---
     var groupsMap = {};
-    var teacherMap = {};
 
     // --- 2. Add groups and connections ---
     allPhotographers.forEach(function(p) {
@@ -138,31 +137,7 @@ function buildNetwork(filter) {
         }
     });
 
-    // --- 4. Add teacher-student connections ---
-    allPhotographers.forEach(function(p) {
-        if (p.teachers && p.teachers.length > 0) {
-            p.teachers.forEach(function(teacherId) {
-                var teacher = allPhotographers.find(function(t) { return t.id === teacherId; });
-                if (teacher) {
-                    var edgeId = p.id + '_' + teacherId;
-                    edges.push({
-                        id: edgeId,
-                        from: p.id,
-                        to: teacherId,
-                        label: 'taught by',
-                        color: { color: '#8a4a6a' },
-                        dashes: false,
-                        width: 2,
-                        arrows: { to: { enabled: true, scaleFactor: 0.8 } }
-                    });
-                } else {
-                    console.warn('Teacher not found:', teacherId, 'for', p.name);
-                }
-            });
-        }
-    });
-
-    // --- 5. Add genres as nodes ---
+    // --- 4. Add genres as nodes ---
     var genreNodes = {};
     allPhotographers.forEach(function(p) {
         p.genres.forEach(function(genre) {
@@ -192,7 +167,7 @@ function buildNetwork(filter) {
         });
     });
 
-    // --- 6. Add techniques as nodes ---
+    // --- 5. Add techniques as nodes ---
     var techniqueNodes = {};
     allPhotographers.forEach(function(p) {
         if (p.techniques) {
@@ -224,7 +199,7 @@ function buildNetwork(filter) {
         }
     });
 
-    // --- 7. Apply filter ---
+    // --- 6. Apply filter ---
     var filteredNodeIds = new Set();
     var filteredEdgeIds = new Set();
 
@@ -248,15 +223,6 @@ function buildNetwork(filter) {
         });
         // Add Magnum node
         filteredNodeIds.add(magnumId);
-    } else if (filter === 'teachers') {
-        // Only show teacher-student connections
-        edges.forEach(function(e) {
-            if (e.label === 'taught by' || e.label === 'student of') {
-                filteredNodeIds.add(e.from);
-                filteredNodeIds.add(e.to);
-                filteredEdgeIds.add(e.id || e.from + '_' + e.to);
-            }
-        });
     } else if (filter === 'groups') {
         // Only show group connections
         edges.forEach(function(e) {
@@ -307,7 +273,6 @@ function buildNetwork(filter) {
     var labels = {
         'all': 'Showing all connections',
         'magnum': 'Showing Magnum Photos members',
-        'teachers': 'Showing teacher-student relationships',
         'groups': 'Showing group memberships',
         'genres': 'Showing genre connections',
         'techniques': 'Showing technique connections'
