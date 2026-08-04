@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DH Explorer — Timeline</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/dist/vis-timeline.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/dist/vis-timeline.min.css" rel="stylesheet">
+    <!-- Use vis.js version 4.21.0 which has vis.Timeline support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -32,6 +33,13 @@
             border-radius: 12px;
             margin-top: 20px;
             height: 600px;
+        }
+        /* Timeline item styling */
+        .vis-item.photographer {
+            background-color: #4a6a8a;
+            border-color: #4a6a8a;
+            color: white;
+            border-radius: 4px;
         }
         .back-link {
             display: inline-block;
